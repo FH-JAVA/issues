@@ -1,0 +1,1092 @@
+[05/05 10:11:13] detectron2 INFO: Rank of current process: 0. World size: 1
+[05/05 10:11:14] detectron2 INFO: Environment info:
+----------------------  --------------------------------------------------------------------------------
+sys.platform            linux
+Python                  3.8.13 (default, Mar 28 2022, 11:38:47) [GCC 7.5.0]
+numpy                   1.21.5
+detectron2              0.6 @/root/detectron2/detectron2
+Compiler                GCC 7.5
+CUDA compiler           CUDA 11.3
+detectron2 arch flags   8.6
+DETECTRON2_ENV_MODULE   <not set>
+PyTorch                 1.10.0 @/root/miniconda3/envs/detectron2/lib/python3.8/site-packages/torch
+PyTorch debug build     False
+GPU available           Yes
+GPU 0                   NVIDIA GeForce RTX 3090 (arch=8.6)
+Driver version          470.74
+CUDA_HOME               /usr/local/cuda
+Pillow                  9.1.0
+torchvision             0.11.0 @/root/miniconda3/envs/detectron2/lib/python3.8/site-packages/torchvision
+torchvision arch flags  3.5, 5.0, 6.0, 7.0, 7.5, 8.0, 8.6
+fvcore                  0.1.5.post20220414
+iopath                  0.1.9
+cv2                     4.5.5
+----------------------  --------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) oneAPI Math Kernel Library Version 2021.4-Product Build 20210904 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.2.3 (Git Hash 7336ca9f055cf1bfa13efb658fe15dc9b41f0740)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 11.3
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.2
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.3, CUDNN_VERSION=8.2.0, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.10.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+[05/05 10:11:14] detectron2 INFO: Command line arguments: Namespace(config_file='configs/CenterNet-S4_DLA_8x.yaml', dist_url='tcp://127.0.0.1:20674', eval_only=True, machine_rank=0, manual_device='', num_gpus=1, num_machines=1, opts=['MODEL.WEIGHTS', 'models/CenterNet-S4_DLA_8x.pth'], resume=False)
+[05/05 10:11:14] detectron2 INFO: Contents of args.config_file=configs/CenterNet-S4_DLA_8x.yaml:
+_BASE_: "Base_S4_DLA.yaml"
+SOLVER:
+  MAX_ITER: 90000
+  BASE_LR: 0.08
+  IMS_PER_BATCH: 128
+[05/05 10:11:14] detectron2 INFO: Running with full config:
+CUDNN_BENCHMARK: false
+DATALOADER:
+  ASPECT_RATIO_GROUPING: true
+  FILTER_EMPTY_ANNOTATIONS: true
+  NUM_WORKERS: 8
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: []
+  PROPOSAL_FILES_TRAIN: []
+  TEST:
+  - coco_2017_val
+  TRAIN:
+  - coco_2017_train
+DEBUG: false
+DEBUG_SHOW_NAME: false
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: false
+    SIZE:
+    - 0.9
+    - 0.9
+    TYPE: relative_range
+  CUSTOM_AUG: EfficientDetResizeCrop
+  FORMAT: BGR
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 900
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 608
+  MIN_SIZE_TRAIN:
+  - 800
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  NOT_CLAMP_BOX: false
+  RANDOM_FLIP: horizontal
+  SCALE_RANGE:
+  - 0.1
+  - 2.0
+  TEST_INPUT_TYPE: default
+  TEST_SIZE: 640
+  TRAIN_SIZE: 640
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES:
+    - - -90
+      - 0
+      - 90
+    ASPECT_RATIOS:
+    - - 0.5
+      - 1.0
+      - 2.0
+    NAME: DefaultAnchorGenerator
+    OFFSET: 0.0
+    SIZES:
+    - - 32
+      - 64
+      - 128
+      - 256
+      - 512
+  BACKBONE:
+    FREEZE_AT: 2
+    NAME: build_dla_backbone
+  BIFPN:
+    NORM: GN
+    NUM_BIFPN: 6
+    NUM_LEVELS: 5
+    OUT_CHANNELS: 160
+    SEPARABLE_CONV: false
+  CENTERNET:
+    AS_PROPOSAL: false
+    CENTER_NMS: false
+    FPN_STRIDES:
+    - 4
+    HM_FOCAL_ALPHA: 0.25
+    HM_FOCAL_BETA: 4
+    HM_MIN_OVERLAP: 0.8
+    IGNORE_HIGH_FP: -1.0
+    INFERENCE_TH: 0.05
+    IN_FEATURES:
+    - dla2
+    LOC_LOSS_TYPE: giou
+    LOSS_GAMMA: 2.0
+    MIN_RADIUS: 4
+    MORE_POS: true
+    MORE_POS_THRESH: 0.2
+    MORE_POS_TOPK: 9
+    NEG_WEIGHT: 1.0
+    NMS_TH_TEST: 0.6
+    NMS_TH_TRAIN: 0.6
+    NORM: GN
+    NOT_NMS: false
+    NOT_NORM_REG: true
+    NO_REDUCE: false
+    NUM_BOX_CONVS: 1
+    NUM_CLASSES: 80
+    NUM_CLS_CONVS: 1
+    NUM_SHARE_CONVS: 0
+    ONLY_PROPOSAL: false
+    POST_NMS_TOPK_TEST: 100
+    POST_NMS_TOPK_TRAIN: 100
+    POS_WEIGHT: 1.0
+    PRE_NMS_TOPK_TEST: 1000
+    PRE_NMS_TOPK_TRAIN: 1000
+    PRIOR_PROB: 0.01
+    REG_WEIGHT: 1.0
+    SIGMOID_CLAMP: 0.0001
+    SOI:
+    - - 0
+      - 1000000
+    USE_DEFORMABLE: false
+    WITH_AGN_HM: false
+  DEVICE: cuda
+  DLA:
+    DLAUP_IN_FEATURES:
+    - dla3
+    - dla4
+    - dla5
+    DLAUP_NODE: conv
+    MS_OUTPUT: false
+    NORM: BN
+    NUM_LAYERS: 34
+    OUT_FEATURES:
+    - dla2
+    USE_DLA_UP: true
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES: []
+    NORM: ''
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: false
+  LOAD_PROPOSALS: false
+  MASK_ON: false
+  META_ARCHITECTURE: CenterNetDetector
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: true
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN:
+  - 103.53
+  - 116.28
+  - 123.675
+  PIXEL_STD:
+  - 57.375
+  - 57.12
+  - 58.395
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 0
+    NAME: CenterNet
+  RESNETS:
+    DEFORM_MODULATED: false
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE:
+    - false
+    - false
+    - false
+    - false
+    DEPTH: 50
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES:
+    - res4
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: true
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_LOSS_TYPE: smooth_l1
+    BBOX_REG_WEIGHTS: &id002
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES:
+    - p3
+    - p4
+    - p5
+    - p6
+    - p7
+    IOU_LABELS:
+    - 0
+    - -1
+    - 1
+    IOU_THRESHOLDS:
+    - 0.4
+    - 0.5
+    NMS_THRESH_TEST: 0.5
+    NORM: ''
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS:
+    - &id001
+      - 10.0
+      - 10.0
+      - 5.0
+      - 5.0
+    - - 20.0
+      - 20.0
+      - 10.0
+      - 10.0
+    - - 30.0
+      - 30.0
+      - 15.0
+      - 15.0
+    IOUS:
+    - 0.5
+    - 0.6
+    - 0.7
+  ROI_BOX_HEAD:
+    BBOX_REG_LOSS_TYPE: smooth_l1
+    BBOX_REG_LOSS_WEIGHT: 1.0
+    BBOX_REG_WEIGHTS: *id001
+    CAT_FREQ_PATH: datasets/lvis/lvis_v1_train_cat_info.json
+    CLS_AGNOSTIC_BBOX_REG: false
+    CONV_DIM: 256
+    EQL_FREQ_CAT: 200
+    FC_DIM: 1024
+    FED_LOSS_FREQ_WEIGHT: 0.5
+    FED_LOSS_FREQ_WEIGHT_POWER: 0.5
+    FED_LOSS_NUM_CAT: 50
+    FED_LOSS_NUM_CLASSES: 50
+    MULT_PROPOSAL_SCORE: false
+    NAME: ''
+    NORM: ''
+    NUM_CONV: 0
+    NUM_FC: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+    PRIOR_PROB: 0.01
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: false
+    USE_EQL_LOSS: false
+    USE_FED_LOSS: false
+    USE_SIGMOID_CE: false
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 512
+    IN_FEATURES:
+    - res4
+    IOU_LABELS:
+    - 0
+    - 1
+    IOU_THRESHOLDS:
+    - 0.5
+    NAME: Res5ROIHeads
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 80
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: true
+    SCORE_THRESH_TEST: 0.05
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS:
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: true
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: false
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: ''
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_LOSS_TYPE: smooth_l1
+    BBOX_REG_LOSS_WEIGHT: 1.0
+    BBOX_REG_WEIGHTS: *id002
+    BOUNDARY_THRESH: -1
+    CONV_DIMS:
+    - -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES:
+    - res4
+    IOU_LABELS:
+    - 0
+    - -1
+    - 1
+    IOU_THRESHOLDS:
+    - 0.3
+    - 0.7
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 1000
+    POST_NMS_TOPK_TRAIN: 2000
+    PRE_NMS_TOPK_TEST: 6000
+    PRE_NMS_TOPK_TRAIN: 12000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES:
+    - p2
+    - p3
+    - p4
+    - p5
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  WEIGHTS: models/CenterNet-S4_DLA_8x.pth
+OUTPUT_DIR: output/CenterNet2/CenterNet-S4_DLA_8x
+SAVE_DEBUG: false
+SAVE_PTH: false
+SEED: -1
+SOLVER:
+  AMP:
+    ENABLED: false
+  BASE_LR: 0.08
+  BASE_LR_END: 0.0
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 1000000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: true
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 128
+  LR_SCHEDULER_NAME: WarmupCosineLR
+  MAX_ITER: 90000
+  MOMENTUM: 0.9
+  NESTEROV: false
+  REFERENCE_WORLD_SIZE: 0
+  RESET_ITER: false
+  STEPS:
+  - 30000
+  TRAIN_ITER: -1
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: null
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: false
+    FLIP: true
+    MAX_SIZE: 4000
+    MIN_SIZES:
+    - 400
+    - 500
+    - 600
+    - 700
+    - 800
+    - 900
+    - 1000
+    - 1100
+    - 1200
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 7500
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: false
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+VIS_THRESH: 0.3
+
+[05/05 10:11:14] detectron2 INFO: Full config saved to output/CenterNet2/CenterNet-S4_DLA_8x/config.yaml
+[05/05 10:11:14] d2.utils.env INFO: Using a generated random seed 14811094
+[05/05 10:11:20] detectron2 INFO: Model:
+CenterNetDetector(
+  (backbone): DLASeg(
+    (base): DLA(
+      (base_layer): Sequential(
+        (0): Conv2d(3, 16, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (level0): Sequential(
+        (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (level1): Sequential(
+        (0): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (level2): Tree(
+        (tree1): BasicBlock(
+          (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU(inplace=True)
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (tree2): BasicBlock(
+          (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU(inplace=True)
+          (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (root): Root(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU(inplace=True)
+        )
+        (downsample): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (project): Sequential(
+          (0): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (level3): Tree(
+        (tree1): Tree(
+          (tree1): BasicBlock(
+            (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (tree2): BasicBlock(
+            (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (root): Root(
+            (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (downsample): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+          (project): Sequential(
+            (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (tree2): Tree(
+          (tree1): BasicBlock(
+            (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (tree2): BasicBlock(
+            (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (root): Root(
+            (conv): Conv2d(448, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+        (downsample): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (project): Sequential(
+          (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (level4): Tree(
+        (tree1): Tree(
+          (tree1): BasicBlock(
+            (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (tree2): BasicBlock(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (root): Root(
+            (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+          (downsample): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+          (project): Sequential(
+            (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (tree2): Tree(
+          (tree1): BasicBlock(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (tree2): BasicBlock(
+            (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+            (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+            (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (root): Root(
+            (conv): Conv2d(896, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (bn): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (relu): ReLU(inplace=True)
+          )
+        )
+        (downsample): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (project): Sequential(
+          (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (level5): Tree(
+        (tree1): BasicBlock(
+          (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU(inplace=True)
+          (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (tree2): BasicBlock(
+          (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU(inplace=True)
+          (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (root): Root(
+          (conv): Conv2d(1280, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (relu): ReLU(inplace=True)
+        )
+        (downsample): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (project): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (fc): Conv2d(512, 1000, kernel_size=(1, 1), stride=(1, 1))
+    )
+    (dla_up): DLAUp(
+      (ida_0): IDAUp(
+        (proj_1): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(512, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=512, out_channels=256, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (up_1): ConvTranspose2d(256, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), groups=256, bias=False)
+        (node_1): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+      )
+      (ida_1): IDAUp(
+        (proj_1): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=256, out_channels=128, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (up_1): ConvTranspose2d(128, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), groups=128, bias=False)
+        (node_1): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(128, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=128, out_channels=128, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (proj_2): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=256, out_channels=128, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (up_2): ConvTranspose2d(128, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), groups=128, bias=False)
+        (node_2): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(128, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=128, out_channels=128, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+      )
+      (ida_2): IDAUp(
+        (proj_1): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(128, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=128, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (up_1): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (node_1): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(64, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=64, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (proj_2): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(128, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=128, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (up_2): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (node_2): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(64, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=64, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (proj_3): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(128, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=128, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+        (up_3): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (node_3): _DeformConv(
+          (actf): Sequential(
+            (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU(inplace=True)
+          )
+          (offset): Conv2d(64, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (conv): ModulatedDeformConv(in_channels=64, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+        )
+      )
+    )
+    (ida_up): IDAUp(
+      (proj_1): _DeformConv(
+        (actf): Sequential(
+          (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (1): ReLU(inplace=True)
+        )
+        (offset): Conv2d(128, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv): ModulatedDeformConv(in_channels=128, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+      )
+      (up_1): ConvTranspose2d(64, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+      (node_1): _DeformConv(
+        (actf): Sequential(
+          (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (1): ReLU(inplace=True)
+        )
+        (offset): Conv2d(64, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv): ModulatedDeformConv(in_channels=64, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+      )
+      (proj_2): _DeformConv(
+        (actf): Sequential(
+          (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (1): ReLU(inplace=True)
+        )
+        (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv): ModulatedDeformConv(in_channels=256, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+      )
+      (up_2): ConvTranspose2d(64, 64, kernel_size=(8, 8), stride=(4, 4), padding=(2, 2), groups=64, bias=False)
+      (node_2): _DeformConv(
+        (actf): Sequential(
+          (0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (1): ReLU(inplace=True)
+        )
+        (offset): Conv2d(64, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (conv): ModulatedDeformConv(in_channels=64, out_channels=64, kernel_size=(3, 3), stride=1, padding=1, dilation=1, groups=1, deformable_groups=1, bias=True)
+      )
+    )
+  )
+  (proposal_generator): CenterNet(
+    (iou_loss): IOULoss()
+    (centernet_head): CenterNetHead(
+      (cls_tower): Sequential(
+        (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): GroupNorm(32, 64, eps=1e-05, affine=True)
+        (2): ReLU()
+      )
+      (bbox_tower): Sequential(
+        (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): GroupNorm(32, 64, eps=1e-05, affine=True)
+        (2): ReLU()
+      )
+      (share_tower): Sequential()
+      (bbox_pred): Conv2d(64, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (scales): ModuleList(
+        (0): Scale()
+      )
+      (cls_logits): Conv2d(64, 80, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+  )
+)
+[05/05 10:11:20] fvcore.common.checkpoint INFO: [Checkpointer] Loading from models/CenterNet-S4_DLA_8x.pth ...
+[05/05 10:11:20] d2.checkpoint.c2_model_loading INFO: Following weights matched with submodule 0:
+| Names in Model                                 | Names in Checkpoint                                                                             | Shapes                         |
+|:-----------------------------------------------|:------------------------------------------------------------------------------------------------|:-------------------------------|
+| ckbone.base.base_layer.0.weight                | backbone.base.base_layer.0.weight                                                               | (16, 3, 7, 7)                  |
+| ckbone.base.base_layer.1.*                     | backbone.base.base_layer.1.{bias,num_batches_tracked,running_mean,running_var,weight}           | (16,) () (16,) (16,) (16,)     |
+| ckbone.base.fc.*                               | backbone.base.fc.{bias,weight}                                                                  | (1000,) (1000,512,1,1)         |
+| ckbone.base.level0.0.weight                    | backbone.base.level0.0.weight                                                                   | (16, 16, 3, 3)                 |
+| ckbone.base.level0.1.*                         | backbone.base.level0.1.{bias,num_batches_tracked,running_mean,running_var,weight}               | (16,) () (16,) (16,) (16,)     |
+| ckbone.base.level1.0.weight                    | backbone.base.level1.0.weight                                                                   | (32, 16, 3, 3)                 |
+| ckbone.base.level1.1.*                         | backbone.base.level1.1.{bias,num_batches_tracked,running_mean,running_var,weight}               | (32,) () (32,) (32,) (32,)     |
+| ckbone.base.level2.project.0.weight            | backbone.base.level2.project.0.weight                                                           | (64, 32, 1, 1)                 |
+| ckbone.base.level2.project.1.*                 | backbone.base.level2.project.1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (64,) () (64,) (64,) (64,)     |
+| ckbone.base.level2.root.bn.*                   | backbone.base.level2.root.bn.{bias,num_batches_tracked,running_mean,running_var,weight}         | (64,) () (64,) (64,) (64,)     |
+| ckbone.base.level2.root.conv.weight            | backbone.base.level2.root.conv.weight                                                           | (64, 128, 1, 1)                |
+| ckbone.base.level2.tree1.bn1.*                 | backbone.base.level2.tree1.bn1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (64,) () (64,) (64,) (64,)     |
+| ckbone.base.level2.tree1.bn2.*                 | backbone.base.level2.tree1.bn2.{bias,num_batches_tracked,running_mean,running_var,weight}       | (64,) () (64,) (64,) (64,)     |
+| ckbone.base.level2.tree1.conv1.weight          | backbone.base.level2.tree1.conv1.weight                                                         | (64, 32, 3, 3)                 |
+| ckbone.base.level2.tree1.conv2.weight          | backbone.base.level2.tree1.conv2.weight                                                         | (64, 64, 3, 3)                 |
+| ckbone.base.level2.tree2.bn1.*                 | backbone.base.level2.tree2.bn1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (64,) () (64,) (64,) (64,)     |
+| ckbone.base.level2.tree2.bn2.*                 | backbone.base.level2.tree2.bn2.{bias,num_batches_tracked,running_mean,running_var,weight}       | (64,) () (64,) (64,) (64,)     |
+| ckbone.base.level2.tree2.conv1.weight          | backbone.base.level2.tree2.conv1.weight                                                         | (64, 64, 3, 3)                 |
+| ckbone.base.level2.tree2.conv2.weight          | backbone.base.level2.tree2.conv2.weight                                                         | (64, 64, 3, 3)                 |
+| ckbone.base.level3.project.0.weight            | backbone.base.level3.project.0.weight                                                           | (128, 64, 1, 1)                |
+| ckbone.base.level3.project.1.*                 | backbone.base.level3.project.1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree1.project.0.weight      | backbone.base.level3.tree1.project.0.weight                                                     | (128, 64, 1, 1)                |
+| ckbone.base.level3.tree1.project.1.*           | backbone.base.level3.tree1.project.1.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree1.root.bn.*             | backbone.base.level3.tree1.root.bn.{bias,num_batches_tracked,running_mean,running_var,weight}   | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree1.root.conv.weight      | backbone.base.level3.tree1.root.conv.weight                                                     | (128, 256, 1, 1)               |
+| ckbone.base.level3.tree1.tree1.bn1.*           | backbone.base.level3.tree1.tree1.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree1.tree1.bn2.*           | backbone.base.level3.tree1.tree1.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree1.tree1.conv1.weight    | backbone.base.level3.tree1.tree1.conv1.weight                                                   | (128, 64, 3, 3)                |
+| ckbone.base.level3.tree1.tree1.conv2.weight    | backbone.base.level3.tree1.tree1.conv2.weight                                                   | (128, 128, 3, 3)               |
+| ckbone.base.level3.tree1.tree2.bn1.*           | backbone.base.level3.tree1.tree2.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree1.tree2.bn2.*           | backbone.base.level3.tree1.tree2.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree1.tree2.conv1.weight    | backbone.base.level3.tree1.tree2.conv1.weight                                                   | (128, 128, 3, 3)               |
+| ckbone.base.level3.tree1.tree2.conv2.weight    | backbone.base.level3.tree1.tree2.conv2.weight                                                   | (128, 128, 3, 3)               |
+| ckbone.base.level3.tree2.root.bn.*             | backbone.base.level3.tree2.root.bn.{bias,num_batches_tracked,running_mean,running_var,weight}   | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree2.root.conv.weight      | backbone.base.level3.tree2.root.conv.weight                                                     | (128, 448, 1, 1)               |
+| ckbone.base.level3.tree2.tree1.bn1.*           | backbone.base.level3.tree2.tree1.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree2.tree1.bn2.*           | backbone.base.level3.tree2.tree1.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree2.tree1.conv1.weight    | backbone.base.level3.tree2.tree1.conv1.weight                                                   | (128, 128, 3, 3)               |
+| ckbone.base.level3.tree2.tree1.conv2.weight    | backbone.base.level3.tree2.tree1.conv2.weight                                                   | (128, 128, 3, 3)               |
+| ckbone.base.level3.tree2.tree2.bn1.*           | backbone.base.level3.tree2.tree2.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree2.tree2.bn2.*           | backbone.base.level3.tree2.tree2.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (128,) () (128,) (128,) (128,) |
+| ckbone.base.level3.tree2.tree2.conv1.weight    | backbone.base.level3.tree2.tree2.conv1.weight                                                   | (128, 128, 3, 3)               |
+| ckbone.base.level3.tree2.tree2.conv2.weight    | backbone.base.level3.tree2.tree2.conv2.weight                                                   | (128, 128, 3, 3)               |
+| ckbone.base.level4.project.0.weight            | backbone.base.level4.project.0.weight                                                           | (256, 128, 1, 1)               |
+| ckbone.base.level4.project.1.*                 | backbone.base.level4.project.1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree1.project.0.weight      | backbone.base.level4.tree1.project.0.weight                                                     | (256, 128, 1, 1)               |
+| ckbone.base.level4.tree1.project.1.*           | backbone.base.level4.tree1.project.1.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree1.root.bn.*             | backbone.base.level4.tree1.root.bn.{bias,num_batches_tracked,running_mean,running_var,weight}   | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree1.root.conv.weight      | backbone.base.level4.tree1.root.conv.weight                                                     | (256, 512, 1, 1)               |
+| ckbone.base.level4.tree1.tree1.bn1.*           | backbone.base.level4.tree1.tree1.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree1.tree1.bn2.*           | backbone.base.level4.tree1.tree1.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree1.tree1.conv1.weight    | backbone.base.level4.tree1.tree1.conv1.weight                                                   | (256, 128, 3, 3)               |
+| ckbone.base.level4.tree1.tree1.conv2.weight    | backbone.base.level4.tree1.tree1.conv2.weight                                                   | (256, 256, 3, 3)               |
+| ckbone.base.level4.tree1.tree2.bn1.*           | backbone.base.level4.tree1.tree2.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree1.tree2.bn2.*           | backbone.base.level4.tree1.tree2.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree1.tree2.conv1.weight    | backbone.base.level4.tree1.tree2.conv1.weight                                                   | (256, 256, 3, 3)               |
+| ckbone.base.level4.tree1.tree2.conv2.weight    | backbone.base.level4.tree1.tree2.conv2.weight                                                   | (256, 256, 3, 3)               |
+| ckbone.base.level4.tree2.root.bn.*             | backbone.base.level4.tree2.root.bn.{bias,num_batches_tracked,running_mean,running_var,weight}   | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree2.root.conv.weight      | backbone.base.level4.tree2.root.conv.weight                                                     | (256, 896, 1, 1)               |
+| ckbone.base.level4.tree2.tree1.bn1.*           | backbone.base.level4.tree2.tree1.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree2.tree1.bn2.*           | backbone.base.level4.tree2.tree1.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree2.tree1.conv1.weight    | backbone.base.level4.tree2.tree1.conv1.weight                                                   | (256, 256, 3, 3)               |
+| ckbone.base.level4.tree2.tree1.conv2.weight    | backbone.base.level4.tree2.tree1.conv2.weight                                                   | (256, 256, 3, 3)               |
+| ckbone.base.level4.tree2.tree2.bn1.*           | backbone.base.level4.tree2.tree2.bn1.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree2.tree2.bn2.*           | backbone.base.level4.tree2.tree2.bn2.{bias,num_batches_tracked,running_mean,running_var,weight} | (256,) () (256,) (256,) (256,) |
+| ckbone.base.level4.tree2.tree2.conv1.weight    | backbone.base.level4.tree2.tree2.conv1.weight                                                   | (256, 256, 3, 3)               |
+| ckbone.base.level4.tree2.tree2.conv2.weight    | backbone.base.level4.tree2.tree2.conv2.weight                                                   | (256, 256, 3, 3)               |
+| ckbone.base.level5.project.0.weight            | backbone.base.level5.project.0.weight                                                           | (512, 256, 1, 1)               |
+| ckbone.base.level5.project.1.*                 | backbone.base.level5.project.1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (512,) () (512,) (512,) (512,) |
+| ckbone.base.level5.root.bn.*                   | backbone.base.level5.root.bn.{bias,num_batches_tracked,running_mean,running_var,weight}         | (512,) () (512,) (512,) (512,) |
+| ckbone.base.level5.root.conv.weight            | backbone.base.level5.root.conv.weight                                                           | (512, 1280, 1, 1)              |
+| ckbone.base.level5.tree1.bn1.*                 | backbone.base.level5.tree1.bn1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (512,) () (512,) (512,) (512,) |
+| ckbone.base.level5.tree1.bn2.*                 | backbone.base.level5.tree1.bn2.{bias,num_batches_tracked,running_mean,running_var,weight}       | (512,) () (512,) (512,) (512,) |
+| ckbone.base.level5.tree1.conv1.weight          | backbone.base.level5.tree1.conv1.weight                                                         | (512, 256, 3, 3)               |
+| ckbone.base.level5.tree1.conv2.weight          | backbone.base.level5.tree1.conv2.weight                                                         | (512, 512, 3, 3)               |
+| ckbone.base.level5.tree2.bn1.*                 | backbone.base.level5.tree2.bn1.{bias,num_batches_tracked,running_mean,running_var,weight}       | (512,) () (512,) (512,) (512,) |
+| ckbone.base.level5.tree2.bn2.*                 | backbone.base.level5.tree2.bn2.{bias,num_batches_tracked,running_mean,running_var,weight}       | (512,) () (512,) (512,) (512,) |
+| ckbone.base.level5.tree2.conv1.weight          | backbone.base.level5.tree2.conv1.weight                                                         | (512, 512, 3, 3)               |
+| ckbone.base.level5.tree2.conv2.weight          | backbone.base.level5.tree2.conv2.weight                                                         | (512, 512, 3, 3)               |
+| ckbone.dla_up.ida_0.node_1.actf.0.*            | backbone.dla_up.ida_0.node_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (256,) () (256,) (256,) (256,) |
+| ckbone.dla_up.ida_0.node_1.conv.*              | backbone.dla_up.ida_0.node_1.conv.{bias,weight}                                                 | (256,) (256,256,3,3)           |
+| ckbone.dla_up.ida_0.node_1.offset.*            | backbone.dla_up.ida_0.node_1.offset.{bias,weight}                                               | (27,) (27,256,3,3)             |
+| ckbone.dla_up.ida_0.proj_1.actf.0.*            | backbone.dla_up.ida_0.proj_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (256,) () (256,) (256,) (256,) |
+| ckbone.dla_up.ida_0.proj_1.conv.*              | backbone.dla_up.ida_0.proj_1.conv.{bias,weight}                                                 | (256,) (256,512,3,3)           |
+| ckbone.dla_up.ida_0.proj_1.offset.*            | backbone.dla_up.ida_0.proj_1.offset.{bias,weight}                                               | (27,) (27,512,3,3)             |
+| ckbone.dla_up.ida_0.up_1.weight                | backbone.dla_up.ida_0.up_1.weight                                                               | (256, 1, 4, 4)                 |
+| ckbone.dla_up.ida_1.node_1.actf.0.*            | backbone.dla_up.ida_1.node_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (128,) () (128,) (128,) (128,) |
+| ckbone.dla_up.ida_1.node_1.conv.*              | backbone.dla_up.ida_1.node_1.conv.{bias,weight}                                                 | (128,) (128,128,3,3)           |
+| ckbone.dla_up.ida_1.node_1.offset.*            | backbone.dla_up.ida_1.node_1.offset.{bias,weight}                                               | (27,) (27,128,3,3)             |
+| ckbone.dla_up.ida_1.node_2.actf.0.*            | backbone.dla_up.ida_1.node_2.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (128,) () (128,) (128,) (128,) |
+| ckbone.dla_up.ida_1.node_2.conv.*              | backbone.dla_up.ida_1.node_2.conv.{bias,weight}                                                 | (128,) (128,128,3,3)           |
+| ckbone.dla_up.ida_1.node_2.offset.*            | backbone.dla_up.ida_1.node_2.offset.{bias,weight}                                               | (27,) (27,128,3,3)             |
+| ckbone.dla_up.ida_1.proj_1.actf.0.*            | backbone.dla_up.ida_1.proj_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (128,) () (128,) (128,) (128,) |
+| ckbone.dla_up.ida_1.proj_1.conv.*              | backbone.dla_up.ida_1.proj_1.conv.{bias,weight}                                                 | (128,) (128,256,3,3)           |
+| ckbone.dla_up.ida_1.proj_1.offset.*            | backbone.dla_up.ida_1.proj_1.offset.{bias,weight}                                               | (27,) (27,256,3,3)             |
+| ckbone.dla_up.ida_1.proj_2.actf.0.*            | backbone.dla_up.ida_1.proj_2.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (128,) () (128,) (128,) (128,) |
+| ckbone.dla_up.ida_1.proj_2.conv.*              | backbone.dla_up.ida_1.proj_2.conv.{bias,weight}                                                 | (128,) (128,256,3,3)           |
+| ckbone.dla_up.ida_1.proj_2.offset.*            | backbone.dla_up.ida_1.proj_2.offset.{bias,weight}                                               | (27,) (27,256,3,3)             |
+| ckbone.dla_up.ida_1.up_1.weight                | backbone.dla_up.ida_1.up_1.weight                                                               | (128, 1, 4, 4)                 |
+| ckbone.dla_up.ida_1.up_2.weight                | backbone.dla_up.ida_1.up_2.weight                                                               | (128, 1, 4, 4)                 |
+| ckbone.dla_up.ida_2.node_1.actf.0.*            | backbone.dla_up.ida_2.node_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (64,) () (64,) (64,) (64,)     |
+| ckbone.dla_up.ida_2.node_1.conv.*              | backbone.dla_up.ida_2.node_1.conv.{bias,weight}                                                 | (64,) (64,64,3,3)              |
+| ckbone.dla_up.ida_2.node_1.offset.*            | backbone.dla_up.ida_2.node_1.offset.{bias,weight}                                               | (27,) (27,64,3,3)              |
+| ckbone.dla_up.ida_2.node_2.actf.0.*            | backbone.dla_up.ida_2.node_2.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (64,) () (64,) (64,) (64,)     |
+| ckbone.dla_up.ida_2.node_2.conv.*              | backbone.dla_up.ida_2.node_2.conv.{bias,weight}                                                 | (64,) (64,64,3,3)              |
+| ckbone.dla_up.ida_2.node_2.offset.*            | backbone.dla_up.ida_2.node_2.offset.{bias,weight}                                               | (27,) (27,64,3,3)              |
+| ckbone.dla_up.ida_2.node_3.actf.0.*            | backbone.dla_up.ida_2.node_3.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (64,) () (64,) (64,) (64,)     |
+| ckbone.dla_up.ida_2.node_3.conv.*              | backbone.dla_up.ida_2.node_3.conv.{bias,weight}                                                 | (64,) (64,64,3,3)              |
+| ckbone.dla_up.ida_2.node_3.offset.*            | backbone.dla_up.ida_2.node_3.offset.{bias,weight}                                               | (27,) (27,64,3,3)              |
+| ckbone.dla_up.ida_2.proj_1.actf.0.*            | backbone.dla_up.ida_2.proj_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (64,) () (64,) (64,) (64,)     |
+| ckbone.dla_up.ida_2.proj_1.conv.*              | backbone.dla_up.ida_2.proj_1.conv.{bias,weight}                                                 | (64,) (64,128,3,3)             |
+| ckbone.dla_up.ida_2.proj_1.offset.*            | backbone.dla_up.ida_2.proj_1.offset.{bias,weight}                                               | (27,) (27,128,3,3)             |
+| ckbone.dla_up.ida_2.proj_2.actf.0.*            | backbone.dla_up.ida_2.proj_2.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (64,) () (64,) (64,) (64,)     |
+| ckbone.dla_up.ida_2.proj_2.conv.*              | backbone.dla_up.ida_2.proj_2.conv.{bias,weight}                                                 | (64,) (64,128,3,3)             |
+| ckbone.dla_up.ida_2.proj_2.offset.*            | backbone.dla_up.ida_2.proj_2.offset.{bias,weight}                                               | (27,) (27,128,3,3)             |
+| ckbone.dla_up.ida_2.proj_3.actf.0.*            | backbone.dla_up.ida_2.proj_3.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}  | (64,) () (64,) (64,) (64,)     |
+| ckbone.dla_up.ida_2.proj_3.conv.*              | backbone.dla_up.ida_2.proj_3.conv.{bias,weight}                                                 | (64,) (64,128,3,3)             |
+| ckbone.dla_up.ida_2.proj_3.offset.*            | backbone.dla_up.ida_2.proj_3.offset.{bias,weight}                                               | (27,) (27,128,3,3)             |
+| ckbone.dla_up.ida_2.up_1.weight                | backbone.dla_up.ida_2.up_1.weight                                                               | (64, 1, 4, 4)                  |
+| ckbone.dla_up.ida_2.up_2.weight                | backbone.dla_up.ida_2.up_2.weight                                                               | (64, 1, 4, 4)                  |
+| ckbone.dla_up.ida_2.up_3.weight                | backbone.dla_up.ida_2.up_3.weight                                                               | (64, 1, 4, 4)                  |
+| ckbone.ida_up.node_1.actf.0.*                  | backbone.ida_up.node_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}        | (64,) () (64,) (64,) (64,)     |
+| ckbone.ida_up.node_1.conv.*                    | backbone.ida_up.node_1.conv.{bias,weight}                                                       | (64,) (64,64,3,3)              |
+| ckbone.ida_up.node_1.offset.*                  | backbone.ida_up.node_1.offset.{bias,weight}                                                     | (27,) (27,64,3,3)              |
+| ckbone.ida_up.node_2.actf.0.*                  | backbone.ida_up.node_2.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}        | (64,) () (64,) (64,) (64,)     |
+| ckbone.ida_up.node_2.conv.*                    | backbone.ida_up.node_2.conv.{bias,weight}                                                       | (64,) (64,64,3,3)              |
+| ckbone.ida_up.node_2.offset.*                  | backbone.ida_up.node_2.offset.{bias,weight}                                                     | (27,) (27,64,3,3)              |
+| ckbone.ida_up.proj_1.actf.0.*                  | backbone.ida_up.proj_1.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}        | (64,) () (64,) (64,) (64,)     |
+| ckbone.ida_up.proj_1.conv.*                    | backbone.ida_up.proj_1.conv.{bias,weight}                                                       | (64,) (64,128,3,3)             |
+| ckbone.ida_up.proj_1.offset.*                  | backbone.ida_up.proj_1.offset.{bias,weight}                                                     | (27,) (27,128,3,3)             |
+| ckbone.ida_up.proj_2.actf.0.*                  | backbone.ida_up.proj_2.actf.0.{bias,num_batches_tracked,running_mean,running_var,weight}        | (64,) () (64,) (64,) (64,)     |
+| ckbone.ida_up.proj_2.conv.*                    | backbone.ida_up.proj_2.conv.{bias,weight}                                                       | (64,) (64,256,3,3)             |
+| ckbone.ida_up.proj_2.offset.*                  | backbone.ida_up.proj_2.offset.{bias,weight}                                                     | (27,) (27,256,3,3)             |
+| ckbone.ida_up.up_1.weight                      | backbone.ida_up.up_1.weight                                                                     | (64, 1, 4, 4)                  |
+| ckbone.ida_up.up_2.weight                      | backbone.ida_up.up_2.weight                                                                     | (64, 1, 8, 8)                  |
+| xel_mean                                       | pixel_mean                                                                                      | (3, 1, 1)                      |
+| xel_std                                        | pixel_std                                                                                       | (3, 1, 1)                      |
+| oposal_generator.centernet_head.bbox_pred.*    | proposal_generator.centernet_head.bbox_pred.{bias,weight}                                       | (4,) (4,64,3,3)                |
+| oposal_generator.centernet_head.bbox_tower.0.* | proposal_generator.centernet_head.bbox_tower.0.{bias,weight}                                    | (64,) (64,64,3,3)              |
+| oposal_generator.centernet_head.bbox_tower.1.* | proposal_generator.centernet_head.bbox_tower.1.{bias,weight}                                    | (64,) (64,)                    |
+| oposal_generator.centernet_head.cls_logits.*   | proposal_generator.centernet_head.cls_logits.{bias,weight}                                      | (80,) (80,64,3,3)              |
+| oposal_generator.centernet_head.cls_tower.0.*  | proposal_generator.centernet_head.cls_tower.0.{bias,weight}                                     | (64,) (64,64,3,3)              |
+| oposal_generator.centernet_head.cls_tower.1.*  | proposal_generator.centernet_head.cls_tower.1.{bias,weight}                                     | (64,) (64,)                    |
+| oposal_generator.centernet_head.scales.0.scale | proposal_generator.centernet_head.scales.0.scale                                                | (1,)                           |
+[05/05 10:11:21] d2.data.datasets.coco INFO: Loaded 5000 images in COCO format from /root/autodl-tmp/data/coco/annotations/instances_val2017.json
+[05/05 10:11:21] d2.data.build INFO: Distribution of instances among all 80 categories:
+[36m|   category    | #instances   |   category   | #instances   |   category    | #instances   |
+|:-------------:|:-------------|:------------:|:-------------|:-------------:|:-------------|
+|    person     | 10777        |   bicycle    | 314          |      car      | 1918         |
+|  motorcycle   | 367          |   airplane   | 143          |      bus      | 283          |
+|     train     | 190          |    truck     | 414          |     boat      | 424          |
+| traffic light | 634          | fire hydrant | 101          |   stop sign   | 75           |
+| parking meter | 60           |    bench     | 411          |     bird      | 427          |
+|      cat      | 202          |     dog      | 218          |     horse     | 272          |
+|     sheep     | 354          |     cow      | 372          |   elephant    | 252          |
+|     bear      | 71           |    zebra     | 266          |    giraffe    | 232          |
+|   backpack    | 371          |   umbrella   | 407          |    handbag    | 540          |
+|      tie      | 252          |   suitcase   | 299          |    frisbee    | 115          |
+|     skis      | 241          |  snowboard   | 69           |  sports ball  | 260          |
+|     kite      | 327          | baseball bat | 145          | baseball gl.. | 148          |
+|  skateboard   | 179          |  surfboard   | 267          | tennis racket | 225          |
+|    bottle     | 1013         |  wine glass  | 341          |      cup      | 895          |
+|     fork      | 215          |    knife     | 325          |     spoon     | 253          |
+|     bowl      | 623          |    banana    | 370          |     apple     | 236          |
+|   sandwich    | 177          |    orange    | 285          |   broccoli    | 312          |
+|    carrot     | 365          |   hot dog    | 125          |     pizza     | 284          |
+|     donut     | 328          |     cake     | 310          |     chair     | 1771         |
+|     couch     | 261          | potted plant | 342          |      bed      | 163          |
+| dining table  | 695          |    toilet    | 179          |      tv       | 288          |
+|    laptop     | 231          |    mouse     | 106          |    remote     | 283          |
+|   keyboard    | 153          |  cell phone  | 262          |   microwave   | 55           |
+|     oven      | 143          |   toaster    | 9            |     sink      | 225          |
+| refrigerator  | 126          |     book     | 1129         |     clock     | 267          |
+|     vase      | 274          |   scissors   | 36           |  teddy bear   | 190          |
+|  hair drier   | 11           |  toothbrush  | 57           |               |              |
+|     total     | 36335        |              |              |               |              |[0m
+[05/05 10:11:21] d2.data.dataset_mapper INFO: [DatasetMapper] Augmentations used in inference: [ResizeShortestEdge(short_edge_length=(608, 608), max_size=900, sample_style='choice')]
+[05/05 10:11:21] d2.data.common INFO: Serializing 5000 elements to byte tensors and concatenating them all ...
+[05/05 10:11:21] d2.data.common INFO: Serialized dataset takes 19.16 MiB
+[05/05 10:11:21] d2.evaluation.coco_evaluation WARNING: COCO Evaluator instantiated using config, this is deprecated behavior. Please pass in explicit arguments instead.
+[05/05 10:11:22] d2.evaluation.evaluator INFO: Start inference on 5000 batches
+[05/05 10:11:26] d2.evaluation.evaluator INFO: Inference done 11/5000. Dataloading: 0.0014 s/iter. Inference: 0.0486 s/iter. Eval: 0.0003 s/iter. Total: 0.0503 s/iter. ETA=0:04:11
+[05/05 10:11:31] d2.evaluation.evaluator INFO: Inference done 81/5000. Dataloading: 0.0035 s/iter. Inference: 0.0658 s/iter. Eval: 0.0007 s/iter. Total: 0.0700 s/iter. ETA=0:05:44
+[05/05 10:11:36] d2.evaluation.evaluator INFO: Inference done 154/5000. Dataloading: 0.0026 s/iter. Inference: 0.0665 s/iter. Eval: 0.0005 s/iter. Total: 0.0697 s/iter. ETA=0:05:37
+[05/05 10:11:41] d2.evaluation.evaluator INFO: Inference done 227/5000. Dataloading: 0.0027 s/iter. Inference: 0.0662 s/iter. Eval: 0.0005 s/iter. Total: 0.0694 s/iter. ETA=0:05:31
+[05/05 10:11:46] d2.evaluation.evaluator INFO: Inference done 297/5000. Dataloading: 0.0026 s/iter. Inference: 0.0668 s/iter. Eval: 0.0004 s/iter. Total: 0.0699 s/iter. ETA=0:05:28
+[05/05 10:11:51] d2.evaluation.evaluator INFO: Inference done 369/5000. Dataloading: 0.0028 s/iter. Inference: 0.0667 s/iter. Eval: 0.0004 s/iter. Total: 0.0701 s/iter. ETA=0:05:24
+[05/05 10:11:56] d2.evaluation.evaluator INFO: Inference done 441/5000. Dataloading: 0.0029 s/iter. Inference: 0.0667 s/iter. Eval: 0.0004 s/iter. Total: 0.0700 s/iter. ETA=0:05:19
+[05/05 10:12:02] d2.evaluation.evaluator INFO: Inference done 511/5000. Dataloading: 0.0028 s/iter. Inference: 0.0671 s/iter. Eval: 0.0004 s/iter. Total: 0.0703 s/iter. ETA=0:05:15
+[05/05 10:12:07] d2.evaluation.evaluator INFO: Inference done 582/5000. Dataloading: 0.0026 s/iter. Inference: 0.0672 s/iter. Eval: 0.0004 s/iter. Total: 0.0704 s/iter. ETA=0:05:10
+[05/05 10:12:12] d2.evaluation.evaluator INFO: Inference done 653/5000. Dataloading: 0.0026 s/iter. Inference: 0.0671 s/iter. Eval: 0.0005 s/iter. Total: 0.0704 s/iter. ETA=0:05:05
+[05/05 10:12:17] d2.evaluation.evaluator INFO: Inference done 724/5000. Dataloading: 0.0026 s/iter. Inference: 0.0672 s/iter. Eval: 0.0005 s/iter. Total: 0.0704 s/iter. ETA=0:05:00
+[05/05 10:12:22] d2.evaluation.evaluator INFO: Inference done 797/5000. Dataloading: 0.0026 s/iter. Inference: 0.0672 s/iter. Eval: 0.0005 s/iter. Total: 0.0703 s/iter. ETA=0:04:55
+[05/05 10:12:27] d2.evaluation.evaluator INFO: Inference done 865/5000. Dataloading: 0.0025 s/iter. Inference: 0.0675 s/iter. Eval: 0.0005 s/iter. Total: 0.0706 s/iter. ETA=0:04:51
+[05/05 10:12:32] d2.evaluation.evaluator INFO: Inference done 934/5000. Dataloading: 0.0025 s/iter. Inference: 0.0676 s/iter. Eval: 0.0005 s/iter. Total: 0.0707 s/iter. ETA=0:04:47
+[05/05 10:12:37] d2.evaluation.evaluator INFO: Inference done 1004/5000. Dataloading: 0.0025 s/iter. Inference: 0.0677 s/iter. Eval: 0.0005 s/iter. Total: 0.0708 s/iter. ETA=0:04:42
+[05/05 10:12:42] d2.evaluation.evaluator INFO: Inference done 1075/5000. Dataloading: 0.0026 s/iter. Inference: 0.0676 s/iter. Eval: 0.0005 s/iter. Total: 0.0708 s/iter. ETA=0:04:37
+[05/05 10:12:47] d2.evaluation.evaluator INFO: Inference done 1144/5000. Dataloading: 0.0026 s/iter. Inference: 0.0677 s/iter. Eval: 0.0005 s/iter. Total: 0.0709 s/iter. ETA=0:04:33
+[05/05 10:12:52] d2.evaluation.evaluator INFO: Inference done 1210/5000. Dataloading: 0.0026 s/iter. Inference: 0.0680 s/iter. Eval: 0.0005 s/iter. Total: 0.0712 s/iter. ETA=0:04:29
+[05/05 10:12:57] d2.evaluation.evaluator INFO: Inference done 1279/5000. Dataloading: 0.0026 s/iter. Inference: 0.0681 s/iter. Eval: 0.0005 s/iter. Total: 0.0713 s/iter. ETA=0:04:25
+[05/05 10:13:02] d2.evaluation.evaluator INFO: Inference done 1346/5000. Dataloading: 0.0027 s/iter. Inference: 0.0682 s/iter. Eval: 0.0005 s/iter. Total: 0.0714 s/iter. ETA=0:04:21
+[05/05 10:13:07] d2.evaluation.evaluator INFO: Inference done 1414/5000. Dataloading: 0.0026 s/iter. Inference: 0.0683 s/iter. Eval: 0.0005 s/iter. Total: 0.0715 s/iter. ETA=0:04:16
+[05/05 10:13:12] d2.evaluation.evaluator INFO: Inference done 1485/5000. Dataloading: 0.0026 s/iter. Inference: 0.0683 s/iter. Eval: 0.0005 s/iter. Total: 0.0715 s/iter. ETA=0:04:11
+[05/05 10:13:17] d2.evaluation.evaluator INFO: Inference done 1554/5000. Dataloading: 0.0026 s/iter. Inference: 0.0684 s/iter. Eval: 0.0005 s/iter. Total: 0.0715 s/iter. ETA=0:04:06
+[05/05 10:13:22] d2.evaluation.evaluator INFO: Inference done 1624/5000. Dataloading: 0.0025 s/iter. Inference: 0.0685 s/iter. Eval: 0.0005 s/iter. Total: 0.0716 s/iter. ETA=0:04:01
+[05/05 10:13:27] d2.evaluation.evaluator INFO: Inference done 1692/5000. Dataloading: 0.0025 s/iter. Inference: 0.0686 s/iter. Eval: 0.0005 s/iter. Total: 0.0717 s/iter. ETA=0:03:57
+[05/05 10:13:32] d2.evaluation.evaluator INFO: Inference done 1762/5000. Dataloading: 0.0025 s/iter. Inference: 0.0686 s/iter. Eval: 0.0004 s/iter. Total: 0.0717 s/iter. ETA=0:03:52
+[05/05 10:13:37] d2.evaluation.evaluator INFO: Inference done 1833/5000. Dataloading: 0.0025 s/iter. Inference: 0.0686 s/iter. Eval: 0.0004 s/iter. Total: 0.0717 s/iter. ETA=0:03:47
+[05/05 10:13:42] d2.evaluation.evaluator INFO: Inference done 1903/5000. Dataloading: 0.0025 s/iter. Inference: 0.0687 s/iter. Eval: 0.0004 s/iter. Total: 0.0717 s/iter. ETA=0:03:42
+[05/05 10:13:47] d2.evaluation.evaluator INFO: Inference done 1975/5000. Dataloading: 0.0026 s/iter. Inference: 0.0685 s/iter. Eval: 0.0004 s/iter. Total: 0.0716 s/iter. ETA=0:03:36
+[05/05 10:13:52] d2.evaluation.evaluator INFO: Inference done 2047/5000. Dataloading: 0.0026 s/iter. Inference: 0.0684 s/iter. Eval: 0.0004 s/iter. Total: 0.0716 s/iter. ETA=0:03:31
+[05/05 10:13:57] d2.evaluation.evaluator INFO: Inference done 2118/5000. Dataloading: 0.0026 s/iter. Inference: 0.0684 s/iter. Eval: 0.0004 s/iter. Total: 0.0716 s/iter. ETA=0:03:26
+[05/05 10:14:02] d2.evaluation.evaluator INFO: Inference done 2188/5000. Dataloading: 0.0026 s/iter. Inference: 0.0685 s/iter. Eval: 0.0004 s/iter. Total: 0.0716 s/iter. ETA=0:03:21
+[05/05 10:14:07] d2.evaluation.evaluator INFO: Inference done 2256/5000. Dataloading: 0.0026 s/iter. Inference: 0.0685 s/iter. Eval: 0.0004 s/iter. Total: 0.0717 s/iter. ETA=0:03:16
+[05/05 10:14:12] d2.evaluation.evaluator INFO: Inference done 2327/5000. Dataloading: 0.0026 s/iter. Inference: 0.0685 s/iter. Eval: 0.0004 s/iter. Total: 0.0716 s/iter. ETA=0:03:11
+[05/05 10:14:17] d2.evaluation.evaluator INFO: Inference done 2397/5000. Dataloading: 0.0025 s/iter. Inference: 0.0686 s/iter. Eval: 0.0004 s/iter. Total: 0.0717 s/iter. ETA=0:03:06
+[05/05 10:14:22] d2.evaluation.evaluator INFO: Inference done 2465/5000. Dataloading: 0.0025 s/iter. Inference: 0.0686 s/iter. Eval: 0.0004 s/iter. Total: 0.0717 s/iter. ETA=0:03:01
+[05/05 10:14:27] d2.evaluation.evaluator INFO: Inference done 2533/5000. Dataloading: 0.0025 s/iter. Inference: 0.0687 s/iter. Eval: 0.0004 s/iter. Total: 0.0718 s/iter. ETA=0:02:57
+[05/05 10:14:32] d2.evaluation.evaluator INFO: Inference done 2599/5000. Dataloading: 0.0026 s/iter. Inference: 0.0687 s/iter. Eval: 0.0005 s/iter. Total: 0.0719 s/iter. ETA=0:02:52
+[05/05 10:14:37] d2.evaluation.evaluator INFO: Inference done 2666/5000. Dataloading: 0.0026 s/iter. Inference: 0.0688 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:02:47
+[05/05 10:14:42] d2.evaluation.evaluator INFO: Inference done 2736/5000. Dataloading: 0.0026 s/iter. Inference: 0.0688 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:02:42
+[05/05 10:14:47] d2.evaluation.evaluator INFO: Inference done 2807/5000. Dataloading: 0.0025 s/iter. Inference: 0.0688 s/iter. Eval: 0.0005 s/iter. Total: 0.0719 s/iter. ETA=0:02:37
+[05/05 10:14:53] d2.evaluation.evaluator INFO: Inference done 2877/5000. Dataloading: 0.0025 s/iter. Inference: 0.0688 s/iter. Eval: 0.0005 s/iter. Total: 0.0719 s/iter. ETA=0:02:32
+[05/05 10:14:58] d2.evaluation.evaluator INFO: Inference done 2949/5000. Dataloading: 0.0026 s/iter. Inference: 0.0687 s/iter. Eval: 0.0005 s/iter. Total: 0.0719 s/iter. ETA=0:02:27
+[05/05 10:15:03] d2.evaluation.evaluator INFO: Inference done 3020/5000. Dataloading: 0.0026 s/iter. Inference: 0.0687 s/iter. Eval: 0.0005 s/iter. Total: 0.0719 s/iter. ETA=0:02:22
+[05/05 10:15:08] d2.evaluation.evaluator INFO: Inference done 3086/5000. Dataloading: 0.0025 s/iter. Inference: 0.0688 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:02:17
+[05/05 10:15:13] d2.evaluation.evaluator INFO: Inference done 3157/5000. Dataloading: 0.0025 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:02:12
+[05/05 10:15:18] d2.evaluation.evaluator INFO: Inference done 3225/5000. Dataloading: 0.0025 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:02:07
+[05/05 10:15:23] d2.evaluation.evaluator INFO: Inference done 3295/5000. Dataloading: 0.0025 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:02:02
+[05/05 10:15:28] d2.evaluation.evaluator INFO: Inference done 3365/5000. Dataloading: 0.0025 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:01:57
+[05/05 10:15:33] d2.evaluation.evaluator INFO: Inference done 3435/5000. Dataloading: 0.0025 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:01:52
+[05/05 10:15:38] d2.evaluation.evaluator INFO: Inference done 3503/5000. Dataloading: 0.0025 s/iter. Inference: 0.0690 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:01:47
+[05/05 10:15:43] d2.evaluation.evaluator INFO: Inference done 3573/5000. Dataloading: 0.0025 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:01:42
+[05/05 10:15:48] d2.evaluation.evaluator INFO: Inference done 3643/5000. Dataloading: 0.0025 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:01:37
+[05/05 10:15:53] d2.evaluation.evaluator INFO: Inference done 3711/5000. Dataloading: 0.0026 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:01:32
+[05/05 10:15:58] d2.evaluation.evaluator INFO: Inference done 3780/5000. Dataloading: 0.0026 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0721 s/iter. ETA=0:01:27
+[05/05 10:16:03] d2.evaluation.evaluator INFO: Inference done 3852/5000. Dataloading: 0.0026 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0721 s/iter. ETA=0:01:22
+[05/05 10:16:08] d2.evaluation.evaluator INFO: Inference done 3923/5000. Dataloading: 0.0026 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0720 s/iter. ETA=0:01:17
+[05/05 10:16:13] d2.evaluation.evaluator INFO: Inference done 3992/5000. Dataloading: 0.0026 s/iter. Inference: 0.0689 s/iter. Eval: 0.0005 s/iter. Total: 0.0721 s/iter. ETA=0:01:12
+[05/05 10:16:18] d2.evaluation.evaluator INFO: Inference done 4061/5000. Dataloading: 0.0025 s/iter. Inference: 0.0690 s/iter. Eval: 0.0005 s/iter. Total: 0.0721 s/iter. ETA=0:01:07
+[05/05 10:16:23] d2.evaluation.evaluator INFO: Inference done 4129/5000. Dataloading: 0.0025 s/iter. Inference: 0.0690 s/iter. Eval: 0.0005 s/iter. Total: 0.0721 s/iter. ETA=0:01:02
+[05/05 10:16:28] d2.evaluation.evaluator INFO: Inference done 4194/5000. Dataloading: 0.0025 s/iter. Inference: 0.0690 s/iter. Eval: 0.0005 s/iter. Total: 0.0722 s/iter. ETA=0:00:58
+[05/05 10:16:33] d2.evaluation.evaluator INFO: Inference done 4261/5000. Dataloading: 0.0026 s/iter. Inference: 0.0690 s/iter. Eval: 0.0005 s/iter. Total: 0.0722 s/iter. ETA=0:00:53
+[05/05 10:16:38] d2.evaluation.evaluator INFO: Inference done 4333/5000. Dataloading: 0.0025 s/iter. Inference: 0.0690 s/iter. Eval: 0.0005 s/iter. Total: 0.0722 s/iter. ETA=0:00:48
+[05/05 10:16:43] d2.evaluation.evaluator INFO: Inference done 4401/5000. Dataloading: 0.0025 s/iter. Inference: 0.0691 s/iter. Eval: 0.0005 s/iter. Total: 0.0722 s/iter. ETA=0:00:43
+[05/05 10:16:48] d2.evaluation.evaluator INFO: Inference done 4467/5000. Dataloading: 0.0025 s/iter. Inference: 0.0691 s/iter. Eval: 0.0005 s/iter. Total: 0.0723 s/iter. ETA=0:00:38
+[05/05 10:16:54] d2.evaluation.evaluator INFO: Inference done 4535/5000. Dataloading: 0.0025 s/iter. Inference: 0.0691 s/iter. Eval: 0.0005 s/iter. Total: 0.0723 s/iter. ETA=0:00:33
+[05/05 10:16:59] d2.evaluation.evaluator INFO: Inference done 4603/5000. Dataloading: 0.0025 s/iter. Inference: 0.0692 s/iter. Eval: 0.0005 s/iter. Total: 0.0723 s/iter. ETA=0:00:28
+[05/05 10:17:04] d2.evaluation.evaluator INFO: Inference done 4671/5000. Dataloading: 0.0025 s/iter. Inference: 0.0692 s/iter. Eval: 0.0005 s/iter. Total: 0.0724 s/iter. ETA=0:00:23
+[05/05 10:17:09] d2.evaluation.evaluator INFO: Inference done 4742/5000. Dataloading: 0.0025 s/iter. Inference: 0.0692 s/iter. Eval: 0.0005 s/iter. Total: 0.0723 s/iter. ETA=0:00:18
+[05/05 10:17:14] d2.evaluation.evaluator INFO: Inference done 4809/5000. Dataloading: 0.0025 s/iter. Inference: 0.0692 s/iter. Eval: 0.0005 s/iter. Total: 0.0724 s/iter. ETA=0:00:13
+[05/05 10:17:19] d2.evaluation.evaluator INFO: Inference done 4878/5000. Dataloading: 0.0025 s/iter. Inference: 0.0693 s/iter. Eval: 0.0005 s/iter. Total: 0.0724 s/iter. ETA=0:00:08
+[05/05 10:17:24] d2.evaluation.evaluator INFO: Inference done 4948/5000. Dataloading: 0.0025 s/iter. Inference: 0.0692 s/iter. Eval: 0.0005 s/iter. Total: 0.0724 s/iter. ETA=0:00:03
+[05/05 10:17:28] d2.evaluation.evaluator INFO: Total inference time: 0:06:01.628565 (0.072398 s / iter per device, on 1 devices)
+[05/05 10:17:28] d2.evaluation.evaluator INFO: Total inference pure compute time: 0:05:45 (0.069194 s / iter per device, on 1 devices)
+[05/05 10:17:29] d2.evaluation.coco_evaluation INFO: Preparing results for COCO format ...
+[05/05 10:17:29] d2.evaluation.coco_evaluation INFO: Saving results to output/CenterNet2/CenterNet-S4_DLA_8x/inference_coco_2017_val/coco_instances_results.json
+[05/05 10:17:30] d2.evaluation.coco_evaluation INFO: Evaluating predictions with unofficial COCO API...
+[05/05 10:17:31] d2.evaluation.fast_eval_api INFO: Evaluate annotation type *bbox*
+[05/05 10:17:42] d2.evaluation.fast_eval_api INFO: COCOeval_opt.evaluate() finished in 11.15 seconds.
+[05/05 10:17:42] d2.evaluation.fast_eval_api INFO: Accumulating evaluation results...
+[05/05 10:17:44] d2.evaluation.fast_eval_api INFO: COCOeval_opt.accumulate() finished in 1.42 seconds.
+[05/05 10:17:44] d2.evaluation.coco_evaluation INFO: Evaluation results for bbox: 
+|   AP   |  AP50  |  AP75  |  APs   |  APm   |  APl   |
+|:------:|:------:|:------:|:------:|:------:|:------:|
+| 43.652 | 61.149 | 47.703 | 28.276 | 47.439 | 57.172 |
+[05/05 10:17:44] d2.evaluation.coco_evaluation INFO: Per-category bbox AP: 
+| category      | AP     | category     | AP     | category       | AP     |
+|:--------------|:-------|:-------------|:-------|:---------------|:-------|
+| person        | 58.902 | bicycle      | 33.742 | car            | 48.172 |
+| motorcycle    | 47.204 | airplane     | 68.300 | bus            | 68.081 |
+| train         | 65.356 | truck        | 37.180 | boat           | 29.968 |
+| traffic light | 29.853 | fire hydrant | 69.709 | stop sign      | 67.044 |
+| parking meter | 50.148 | bench        | 26.248 | bird           | 38.164 |
+| cat           | 67.910 | dog          | 63.484 | horse          | 62.522 |
+| sheep         | 55.805 | cow          | 60.757 | elephant       | 66.220 |
+| bear          | 75.944 | zebra        | 71.011 | giraffe        | 69.855 |
+| backpack      | 15.086 | umbrella     | 43.950 | handbag        | 13.377 |
+| tie           | 33.523 | suitcase     | 44.115 | frisbee        | 66.724 |
+| skis          | 27.559 | snowboard    | 37.301 | sports ball    | 49.402 |
+| kite          | 48.733 | baseball bat | 31.454 | baseball glove | 37.705 |
+| skateboard    | 56.661 | surfboard    | 40.191 | tennis racket  | 50.256 |
+| bottle        | 41.204 | wine glass   | 36.791 | cup            | 45.971 |
+| fork          | 37.408 | knife        | 20.681 | spoon          | 18.319 |
+| bowl          | 42.947 | banana       | 22.999 | apple          | 19.676 |
+| sandwich      | 36.894 | orange       | 29.453 | broccoli       | 23.533 |
+| carrot        | 23.770 | hot dog      | 37.542 | pizza          | 51.554 |
+| donut         | 49.616 | cake         | 38.722 | chair          | 31.708 |
+| couch         | 47.779 | potted plant | 28.767 | bed            | 41.497 |
+| dining table  | 24.504 | toilet       | 61.815 | tv             | 56.938 |
+| laptop        | 62.341 | mouse        | 65.014 | remote         | 32.262 |
+| keyboard      | 54.442 | cell phone   | 37.946 | microwave      | 62.064 |
+| oven          | 36.115 | toaster      | 37.877 | sink           | 39.986 |
+| refrigerator  | 56.663 | book         | 16.756 | clock          | 50.733 |
+| vase          | 40.230 | scissors     | 28.783 | teddy bear     | 47.205 |
+| hair drier    | 2.641  | toothbrush   | 23.430 |                |        |
+[05/05 10:17:45] detectron2 INFO: Evaluation results for coco_2017_val in csv format:
+[05/05 10:17:45] d2.evaluation.testing INFO: copypaste: Task: bbox
+[05/05 10:17:45] d2.evaluation.testing INFO: copypaste: AP,AP50,AP75,APs,APm,APl
+[05/05 10:17:45] d2.evaluation.testing INFO: copypaste: 43.6524,61.1492,47.7031,28.2759,47.4395,57.1724
